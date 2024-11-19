@@ -1,0 +1,23 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+    <head> 
+        <link rel = "stylesheet" href="/css/principal.css">
+        <meta charset="UTF-8"> 
+    <title>Busqueda de Peliculas 🎞</title>
+ </head>
+ <body>
+
+    <fieldset>
+        <legend>Ingreso del Año</legend>
+        <form action = "/cgi-bin/pregunta5.pl" method = "get">
+        <label for="campo">Ingrese el año de la pelicula::</label>
+        <br>
+        <label for="campo" style="font-weight:lighter">Insert the year of the movie::</label>
+        <br><br>
+        <input type="text" id="year" name="year" required>
+
+        <button type="submit">Buscar</button>
+        </form>
+    </fieldset>
+ </body>
+ </html>

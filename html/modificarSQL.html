@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+    <head> 
+        <link rel = "stylesheet" href="/css/principal.css">
+        <meta charset="UTF-8"> 
+        
+    <title>Cambiar/Modificar --> SQL</title>
+ </head>
+ <body>
+
+    <fieldset>
+        <legend>Ingreso de Datos</legend>
+        <form action = "/cgi-bin/pregunta1.pl" method = "get">
+        <label for="campo">Ingrese el campo::</label>
+        <select id="campo" name="campo" required>
+            <option value="">Seleccione</option>
+            <option value="peliculas">Pelicula</option>
+            <option value="actores">Actor</option>
+            <option value="casting">Casting</option>
+        </select>
+        <br><br>
+        <label for="dato">Ingrese la propiedad a modificar::</label>
+        <select id="propiedad" name="propiedad" required>
+            <option value="">Seleccione el campo primero</option>
+        </select>
+        <br><br>
+        <label for="dato">Ingrese el dato a modificar::</label>
+        <input type="search" id="datoC" name="datoC" required>
+        <br><br>
+        <label for="dato">Ingrese el dato::</label>
+        <input type="search" id="dato" name="dato" required>
+
+        <button type="submit">Modificar</button>
+        </form>
+    </fieldset>
+    <script> 
+    document.getElementById('campo').addEventListener('change', function (){
+         const propiedad = document.getElementById('propiedad');
+          propiedad.innerHTML = ''; // Limpiar opciones previas const 
+          campoSeleccionado = this.value;
+           if (campoSeleccionado === 'peliculas') {
+            propiedad.innerHTML += '<option value="pelicula_id">ID</option>';
+            propiedad.innerHTML += '<option value="nombre">Nombre</option>';
+            propiedad.innerHTML += '<option value="year">Año</option>';
+            propiedad.innerHTML += '<option value="vote">Votos</option>'; 
+            propiedad.innerHTML += '<option value="score">Puntaje</option>';
+           } else if (campoSeleccionado === 'actores') { 
+            propiedad.innerHTML += '<option value="actor_id">ID</option>';
+            propiedad.innerHTML += '<option value="name">Nombre</option>';
+           } else if (campoSeleccionado === 'casting') { 
+            propiedad.innerHTML += '<option value="casting_id">ID de Casting</option>';
+            propiedad.innerHTML += '<option value="pelicula_id">ID de Pelicula</option>';
+            propiedad.innerHTML += '<option value="actor_id">ID de Actor</option>';
+            propiedad.innerHTML += '<option value="papel">Papel de pelicula</option>';
+           } else { 
+            propiedad.innerHTML = '<option value="">Seleccione el campo primero</option>'; 
+           } 
+        }
+    );
+     </script>
+ </body>

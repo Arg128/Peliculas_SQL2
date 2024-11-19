@@ -1,0 +1,103 @@
+Aviso:
+Si, se esta usando docker compose para crear aparte dos contenedores
+uno con el servicio de nginx y el otro con el servicio de base de datos
+MySQL, la insralación es similar, pero se tiene cre crear un archivo llamado
+docker-compose.yml; el cual va a hacer posible las dos conecciónes de estos
+dos servicios; tambien se ha aplicado un archivo llamado init_db.sql, el cual 
+es la estructura de la base de datos, si se accede a el, se vera que contiene
+las instrucciones indicadas para este laboratorio, en mi caso, la base de datos
+se llama "Cine".
+Continene un Dockerfile, el cual solo tratará de instalar los packetes y recursos 
+para el servicio de nginx, luego de ello, se ejecuta aparte y "wow" logra instalarlo todo.
+
+Errores y Conflictos:
+Pese a que se ha subido los archivos en sus rutas respectivas, nginx no me los logra leer aún,
+lo frustrante es que ni siquiera, es capaz de prosesarme el archivo css; problema que no existia
+cuando empeze a crear contenedores. Actualizando los servicios, dentro del bash del server,
+el problema pesiste en especial algo llamado fascgiwrap.socket, que
+no se instala correctamente. Segiré intentando.
+
+Instrucciones:
+En la consola, dirigase a esta carpeta y ejecute el siguinte comando:
+	docker-compose up --build
+Si se lo desea desinstalar, se debera de ejecutar:
+	docker-compose down
+
+=========================================================
+LINK DE MI GITHUB: https://github.com/Arg128/Peliculas_SQL
+=========================================================
+
+Preguntas ???:
+
+1)¿Qué es una base de datos, y para que sirve?
+-Una base de datos es una estructura, en donde se va almacenado la información, esta estructura
+esta siedno administrada por algo llamado Data Base Management Service (DBMS), el cual vela que información
+sacar a travez de un lenguaje de consulta, que es el SQL a travez de un servicio,
+MySQL, MariaDB, PostGrestDB, Oracle, SofaDB???, como se aclara, es "estructurada",
+mientras qye existen base de datos que no siguene esta norma, osea "NoSQL".
+
+2)¿Como funciona MariaDB?
+-MariaDB, en especifico recibe las consultas como servicio, este las lee y comunica a su DataBase los datos,
+este servicio en conclusión, es un gestor de datos (RDBMS) de codigo abierto, una de sus caracteristicas es
+ *Innovación constante
+ *No solo trabaja para sitios webb, sino para servicions de tipo (SaaS)
+ *Maneja seguridad
+y ademas esta como dato, se incluye a un usuario de host
+
+Plus: Para comunicar desde una base de datos, se debe de utilizar librerias explusibas de lenguajes, en nuestro
+caso, Perl cuenta con la libreria DB, que lo llamamos con "use DB", y con ello manejar los datos.
+
+3) Ejemplos:
+
+Para ejecutar, debemos de estar dentro del servicio:
+CREATE <nombre>; //Crea una base de datos con su respectivo <nombre>
+USE <nombre_db>; //Entramos a la base de datos
+DROP <nombre_db>; //Eliminamos la base de datos <nombre_db>
+
+SHOW TABLES; //Muestra las tablas de nuestra base de datos
+CREATE TABLE <nombre_tbla>([ARGS]); //Crea una tabla con sus respectivos atributos
+	Ejemplo:
+	CREATE TABLE perritos ( 
+	perrito_id INT PRIMARY KEY AUTO_INCREMENT,
+	 nombre VARCHAR(100),
+	 nacimiento DATE 
+	);
+	//Como se observa, SQL maneja varidos tipos de datos.
+DROP TABLE <nombre_tb>; //Elimina la seccion o tabla
+DESCRIBE TABLE <nombre_tb>; //Muestra la estructura de la tabla, similar al SHOW de DB's
+
+INSERT INTO ({tb_seccions}) VALUES ({tb_values}); //Inserta valores
+	Ejemplo:
+	INSERT INTO perritos (perrito_id,
+	nombre, nacimineto) VALUES (012, "Adolfito_BwB",
+	 1998-12-24);
+UPDATE <seccion_tb> SET <tb_seccion> <tb_value>, .. //Asigna en tiempo real, los valores ya existentes
+	¿¿Con dudas?? mmm...
+SELECT <tb_seccions> FROM <nombre_tb> //Devuelve los valores de determinada seccion
+
+WHERE //Esta es utilizada mayormente acompañada con las demas llamadas, Ejemplo:
+	//Actualizar una fecha:
+	UPDATE eventos SET fecha = '2024-12-01' WHERE evento_id =1;
+
+DELETE //Utilizada para eliminar secciones. Ejemplo:
+
+	DELETE FROM eventos WHERE fecha = '2024-11-25';
+
+-MAS COMANDOS:
+	Existen al igual methodos, en los cuales se enfocan en un apartado
+	de variable distinta, no tengo mucha nocion de ellos, seran presentados por IA:
+	//Para secciones de variable DATE
+	//CURDATE(): Devuelve la fecha actual.
+	//DATE_ADD(): Añade un intervalo a una fecha.
+	//SELECT DATE_SUB('2024-11-25', INTERVAL 10)
+	//SELECT DATEDIFF('2024-12-01', '2024-11-25');
+
+	//SUM(columna) suma columnas
+	//COUNT(*) contar registros *=all(todos).
+	//AVG(columna) promediar valores.
+	//MIN(columna) minimo valor.
+	//MAX(columna) maximo valor.
+
+	--> Subconsultas, se marcan entre parentesis();
+Y mucho más, existen dentro del lenguaje de llamadas SQL.
+
